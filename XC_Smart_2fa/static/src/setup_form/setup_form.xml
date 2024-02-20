@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+	<t t-name="cc_odoo_app.SetupForm">
+		<div class="col-md-10 mx-auto col-lg-5">
+			<t t-if="state.setBefore">
+				<div class="col-lg-12 text-center text-lg-start">
+					<div class="col-lg-12">
+						<div class="card mt-4 p-4 bg-light">
+							<div class="card-body">
+								<h1 class="display-4 fw-bold lh-1 mb-3" style="font-weight: 800 !important;">
+									You're all good
+								</h1>
+								<p class="col-lg-10 fs-4">
+									Your data will be sent to the dashboard
+								</p>
+								<h5 class="card-title">
+									User Credentials
+								</h5>
+								<p class="card-text">
+									<strong>
+										Apikey:
+									</strong>
+									<t t-esc="state.apikey" />
+								</p>
+								<p class="card-text">
+									<strong>
+										SiteId:
+									</strong>
+									<t t-esc="state.siteId" />
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+			<t t-else="">
+				<form class="p-4 p-md-5 border rounded-3 bg-light" style="height: 100%;">
+					<img src="/smart_2fa/static/src/images/CrossClassify_Logo.png" alt="Company Logo" class="image-size img-fluid mx-auto d-block" style="max-width: 170px;" />
+					<div class="form-floating mb-3">
+						<input type="text" class="form-control mt-1" id="floatingInput" placeholder="name@example.com" t-att-value="state.apikey" t-on-input="updateApikey">
+						</input>
+						<label for="floatingInput">
+							Apikey
+						</label>
+						<div class="form-floating mb-3">
+							<input type="text" class="form-control mt-1" id="floatingPassword" placeholder="Password" t-att-value="state.siteId" t-on-input="updateSiteId">
+							</input>
+							<label for="floatingPassword">
+								SiteId
+							</label>
+							<div class="checkbox mb-3">
+								<button class="w-100 btn btn-lg btn-primary mt-3" style="background-color: #1A66FF;" type="submit" t-on-click="saveCredentials">
+									Setup
+								</button>
+								<hr class="my-4">
+								</hr>
+								<small class="text-muted">
+									Don't have apikey? get it from
+									<a href="https://app.crossclassify.com/" target="_blank">
+										here
+									</a>
+									now
+								</small>
+							</div>
+						</div>
+					</div>
+				</form>
+			</t>
+		</div>
+	</t>
+</templates>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+	<t t-name="cc_odoo_app.HeroSection">
+		<div class="col-lg-7 text-center text-lg-start">
+			<h1 class="display-4 fw-bold lh-1 mb-3" style="font-weight: 800 !important;">
+				Accelerate your user acquisition and forget about fraud
+			</h1>
+			<p class="col-lg-10 fs-4">
+				Welcome to Cross Classify Smart 2FA, where user security meets seamless authentication. In a digital landscape rife with potential threats, our app stands as a beacon of protection, allowing businesses to fortify their user authentication processes effortlessly. With our innovative scoring system, we swiftly identify and redirect potentially risky user activities towards a simple, one-click setup for Two-Factor Authentication (2FA). Accelerate your user acquisition without compromising security. Welcome to a new era of trust and efficiency.
+			</p>
+		</div>
+	</t>
+</templates>

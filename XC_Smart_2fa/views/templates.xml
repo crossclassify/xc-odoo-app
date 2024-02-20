@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<template id="notify_error_login">
+			<div class="container-fluid d-flex justify-content-center align-items-center" style="height: 100vh;">
+				<div class="card col-md-10 mx-auto col-lg-5">
+					<form class="p-4 p-md-5 border rounded-3 bg-light" style="height: 100%;">
+						<h1 class="display-4 fw-bold lh-1 mb-3" style="font-weight: 800 !important;">
+							Two-factor authentication
+						</h1>
+						<img t-att-src="'data:image/png;base64,' + image_base64" alt="QR Code" />
+						<div class="form-floating mb-3">
+							<label for="floatingInput">
+								Code
+							</label>
+							<input type="text" class="form-control mt-1" id="floatingInput">
+							</input>
+							<div class="form-floating mb-3">
+								<div class="checkbox mb-3">
+									<button class="w-100 btn btn-lg btn-primary mt-3" style="background-color: #1A66FF;" type="submit">
+										Verify
+									</button>
+									<hr class="my-4">
+									</hr>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</template>
+	</data>
+</odoo>
