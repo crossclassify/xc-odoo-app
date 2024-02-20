@@ -3,15 +3,15 @@
     'name': "XC Smart 2fa",
 
     'summary': """
-        Starting module for "Discover the JS framework, chapter 2: Build a dashboard"
+        Secure your Odoo platform by using Smart 2FA.
     """,
 
     'description': """
-        Starting module for "Discover the JS framework, chapter 2: Build a dashboard"
+        Secure your Odoo platform by using Smart 2FA.
     """,
 
-    'author': "Odoo",
-    'website': "https://www.odoo.com/",
+    'author': "CrossClassify",
+    'website': "https://www.crossclassify.com/",
     'category': 'Tutorials/AwesomeDashboard',
     'version': '3.0',
     'application': True,
