@@ -29,5 +29,6 @@
             'XC_Smart_2FA/static/src/**/*',
         ],
     },
+    'images': ['static/description/banner.png'],
     'license': 'LGPL-3'
 }
