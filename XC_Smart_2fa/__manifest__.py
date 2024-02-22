@@ -29,5 +29,5 @@
             'smart_2fa/static/src/**/*',
         ],
     },
-    'license': 'AGPL-3'
+    'license': 'Apache-2.0'
 }
