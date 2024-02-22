@@ -29,5 +29,5 @@
             'XC_Smart_2FA/static/src/**/*',
         ],
     },
-    'license': 'LGPLv3'
+    'license': 'LGPL-3'
 }
