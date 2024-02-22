@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "XC Smart 2fa",
+    'name': "Smart 2FA",
 
     'summary': """
         Secure your Odoo platform by using Smart 2FA.
@@ -12,8 +12,8 @@
 
     'author': "CrossClassify",
     'website': "https://www.crossclassify.com/",
-    'category': 'Tutorials/AwesomeDashboard',
-    'version': '3.0',
+    'category': '',
+    'version': '1.0',
     'application': True,
     'installable': True,
     'depends': ['base', 'web'],
@@ -26,8 +26,8 @@
     ],
     'assets': {
         'web.assets_backend': [
-            'smart_2fa/static/src/**/*',
+            'XC_Smart_2FA/static/src/**/*',
         ],
     },
-    'license': 'Apache-2.0'
+    'license': 'LGPLv3'
 }
