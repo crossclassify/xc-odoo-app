@@ -26,7 +26,7 @@
     ],
     'assets': {
         'web.assets_backend': [
-            'XC_Smart_2FA/static/src/**/*',
+            'xc_smart_2fa/static/src/**/*',
         ],
     },
     'images': ['static/description/banner.png'],

@@ -2,10 +2,10 @@
   <data>
     <record model="ir.actions.client" id="dashboard">
       <field name="name">Dashboard</field>
-      <field name="tag">smart_2fa.dashboard</field>
+      <field name="tag">xc_smart_2fa.dashboard</field>
     </record>
 
-    <menuitem name="Awesome Dashboard" id="smart_2fa.menu_root" groups="base.group_user" web_icon="smart_2fa,static/description/icon.png"/>
-    <menuitem name="Dashboard" id="smart_2fa.dashboard_menu" parent="smart_2fa.menu_root" action="smart_2fa.dashboard" sequence="1"/>
+    <menuitem name="Cross Classify" id="xc_smart_2fa.menu_root" groups="base.group_user" web_icon="xc_smart_2fa,static/description/icon.png"/>
+    <menuitem name="Dashboard" id="xc_smart_2fa.dashboard_menu" parent="xc_smart_2fa.menu_root" action="xc_smart_2fa.dashboard" sequence="1"/>
   </data>
 </odoo>

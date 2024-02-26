@@ -13,6 +13,7 @@ from odoo.tools.translate import _
 from odoo import http, tools
 from odoo.http import content_disposition, dispatch_rpc, request, Response
 from odoo.service import security
+from odoo.addons.web.controllers.home import Home
 
 _logger = logging.getLogger(__name__)
 
@@ -110,7 +111,7 @@ def ensure_db(redirect='/web/database/selector', db=None):
 # ----------------------------------------------------------
 
 
-class Home(http.Controller):
+class CustomHome(Home):
 
     # override
     def _login_redirect(self, uid, redirect=None):
@@ -118,6 +119,7 @@ class Home(http.Controller):
     # override
     @http.route('/web/login', type='http', auth="none")
     def web_login(self, redirect=None, **kw):
+        print("-------------***************________________")
         ensure_db()
         request.params['login_success'] = False
         if request.httprequest.method == 'GET' and redirect and request.session.uid:
@@ -143,7 +145,7 @@ class Home(http.Controller):
             old_uid = request.uid
             try:
                 request.session['password'] = request.params['password']
-                request.session['login'] = request.params['login']
+                request.session['login'] = request.params['email']
                 if 'login' in values and not request.session.get('auth_complete'):
                     user = request.env['res.users'].sudo().search([('login', '=', values['login'])], limit=1)
                     if user:
@@ -152,7 +154,7 @@ class Home(http.Controller):
                         request.session['login_user'] = user.id
                         return http.redirect_with_hash('/web/auth_login')
 
-                uid = request.session.authenticate(request.db, request.params['login'], request.params['password'])
+                uid = request.session.authenticate(request.db, request.params['email'], request.params['password'])
                 request.params['login_success'] = True
                 return request.redirect(self._login_redirect(uid, redirect=redirect))
             except odoo.exceptions.AccessDenied as e:
@@ -169,7 +171,7 @@ class Home(http.Controller):
 
         if not odoo.tools.config['list_db']:
             values['disable_database_manager'] = True
-        resultCon = request.env['cc_smart_2fa'].sudo().search([], limit=1)
+        resultCon = request.env['xc_smart_2fa'].sudo().search([], limit=1)
         values['apikey'] = resultCon.apikey
         values['siteId'] = resultCon.siteId
         print("--------------------------------", resultCon.apikey, resultCon.siteId)
@@ -179,7 +181,7 @@ class Home(http.Controller):
         return response
 
 
-class Website(Home):
+class Website(CustomHome):
 
     # override
     @http.route(website=True, auth="public", sitemap=False)

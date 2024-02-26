@@ -20,7 +20,7 @@ export class SetupForm extends Component {
 
   async loadData() {
       console.log('Trying to read settings');
-      const resConfig = await this.rpc('/smart_2fa/get_setup_data', {});
+      const resConfig = await this.rpc('/xc_smart_2fa/get_setup_data', {});
       console.log('resConfig', resConfig);
       if (resConfig.apikey && resConfig.siteId) {
           console.log('existed');
@@ -33,7 +33,7 @@ export class SetupForm extends Component {
 
   async saveCredentials() {
       console.log('Trying to save settings');
-      await this.rpc('/smart_2fa/set_setup_data', { apikey: this.state.apikey, siteId: this.state.siteId });
+      await this.rpc('/xc_smart_2fa/set_setup_data', { apikey: this.state.apikey, siteId: this.state.siteId });
       console.log('saved successfuly');
       this.state.setBefore = true;
   }

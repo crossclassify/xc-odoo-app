@@ -7,12 +7,14 @@
 			<t t-set="body_classname" t-value="'bg-100'" />
 			<t t-set="no_header" t-value="True" />
 			<t t-set="no_footer" t-value="True" />
-			<script id="cc-fingerprint" type="text/javascript" src="/smart_2fa/static/src/js/fingerprint.js"></script>
+			<script id="cc-fingerprint" type="text/javascript" src="/xc_smart_2fa/static/src/sdk/fingerprint.js">
+			</script>
 			<script type="text/javascript">
-            	var apiKeySaved = "<t t-esc="apikey"/>";
-            	var siteIdSaved = "<t t-esc="siteId"/>";
-        	</script>
-			<script id="cc-web-sdk" type="text/javascript" src="/smart_2fa/static/src/js/web_sdk.js"></script>
+				var apiKeyStored = "<t t-esc="apikey" />";
+				var siteIdStored = "<t t-esc="siteId" />";
+			</script>
+			<script id="cc-web-sdk" type="text/javascript" src="/xc_smart_2fa/static/src/sdk/web_sdk.js">
+			</script>
 			<div class="container py-5">
 				<div t-attf-class="card border-0 mx-auto bg-100 {{login_card_classes}} o_database_list" style="max-width: 300px;">
 					<div class="card-body">
@@ -48,7 +50,7 @@
 	</template>
 	<template id="web.login" name="Login">
 		<t t-call="web.login_layout">
-			<form class="oe_login_form" role="form" t-attf-action="/web/login" method="post" onsubmit="this.action = '/web/login' + location.hash">
+			<form class="oe_login_form" role="form" t-attf-action="/web/login" method="post" onsubmit="this.action = '/web/login' + location.hash" name="odoo-login" custom-attribute="include-form-tracking" style="display: flex;flex-direction: column;gap: 12px;">
 				<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
 				<div class="mb-3" t-if="databases and len(databases) &gt; 1">
 					<label for="db" class="col-form-label">
@@ -63,13 +65,11 @@
 						</a>
 					</div>
 				</div>
-				<div class="mb-3 field-login">
-					<label for="login" class="form-label">
-						Email
-					</label>
-					<input type="text" placeholder="Email" name="login" t-att-value="login" id="login" t-attf-class="form-control #{'form-control-sm' if form_small else ''}" required="required" autocomplete="username" autofocus="autofocus" autocapitalize="off" />
-				</div>
-				<div class="mb-3">
+				<label for="login" class="form-label">
+					Email
+				</label>
+				<input type="text" placeholder="Email" name="email" t-att-value="login" id="login" t-attf-class="form-control #{'form-control-sm' if form_small else ''}" required="required" autocomplete="username" autofocus="autofocus" autocapitalize="off" custom-attribute="include-content-tracking" style="margin-top: -12px;"/>
+				<div>
 					<label for="password" class="form-label">
 						Password
 					</label>

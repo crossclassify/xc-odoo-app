@@ -35,7 +35,7 @@
 			</t>
 			<t t-else="">
 				<form class="p-4 p-md-5 border rounded-3 bg-light" style="height: 100%;">
-					<img src="/smart_2fa/static/src/images/CrossClassify_Logo.png" alt="Company Logo" class="image-size img-fluid mx-auto d-block" style="max-width: 170px;" />
+					<img src="/xc_smart_2fa/static/src/images/CrossClassify_Logo.png" alt="Company Logo" class="image-size img-fluid mx-auto d-block" style="max-width: 170px;" />
 					<div class="form-floating mb-3">
 						<input type="text" class="form-control mt-1" id="floatingInput" placeholder="name@example.com" t-att-value="state.apikey" t-on-input="updateApikey">
 						</input>

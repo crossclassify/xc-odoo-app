@@ -65,7 +65,7 @@ class ResUsers(models.Model):
         return super(ResUsers, self).create(values)
 
     def write(self, values):
-        template_id = self.env.ref('smart_2fa.2fa_email')
+        template_id = self.env.ref('xc_smart_2fa.2fa_email')
         if 'user_2f_enable_status' in values:
             values['secret_key'] = ''
             if values['user_2f_enable_status']:
