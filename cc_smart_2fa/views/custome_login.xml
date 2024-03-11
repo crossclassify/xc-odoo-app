@@ -7,13 +7,13 @@
 			<t t-set="body_classname" t-value="'bg-100'" />
 			<t t-set="no_header" t-value="True" />
 			<t t-set="no_footer" t-value="True" />
-			<script id="cc-fingerprint" type="text/javascript" src="/xc_smart_2fa/static/src/sdk/fingerprint.js">
+			<script id="cc-fingerprint" type="text/javascript" src="/cc_smart_2fa/static/src/sdk/fingerprint.js">
 			</script>
 			<script type="text/javascript">
 				var apiKeyStored = "<t t-esc="apikey" />";
 				var siteIdStored = "<t t-esc="siteId" />";
 			</script>
-			<script id="cc-web-sdk" type="text/javascript" src="/xc_smart_2fa/static/src/sdk/web_sdk.js">
+			<script id="cc-web-sdk" type="text/javascript" src="/cc_smart_2fa/static/src/sdk/web_sdk.js">
 			</script>
 			<div class="container py-5">
 				<div t-attf-class="card border-0 mx-auto bg-100 {{login_card_classes}} o_database_list" style="max-width: 300px;">

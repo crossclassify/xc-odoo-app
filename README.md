@@ -1,1 +1,1 @@
-# xc-odoo-app
+# cc-odoo-app

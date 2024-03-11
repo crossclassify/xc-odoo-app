@@ -8,7 +8,7 @@ import { HeroSection } from "./hero_section/hero_section";
 import { SetupForm } from "./setup_form/setup_form";
 
 class AwesomeDashboard extends Component {
-  static template = "xc_smart_2fa.AwesomeDashboard";
+  static template = "cc_smart_2fa.AwesomeDashboard";
   static components = { Layout, HeroSection, SetupForm };
 
   setup() {
@@ -36,4 +36,4 @@ class AwesomeDashboard extends Component {
   }
 }
 
-registry.category("actions").add("xc_smart_2fa.dashboard", AwesomeDashboard);
+registry.category("actions").add("cc_smart_2fa.dashboard", AwesomeDashboard);

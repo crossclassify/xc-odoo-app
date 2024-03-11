@@ -1,0 +1,11 @@
+<odoo>
+  <data>
+    <record model="ir.actions.client" id="dashboard">
+      <field name="name">Dashboard</field>
+      <field name="tag">cc_smart_2fa.dashboard</field>
+    </record>
+
+    <menuitem name="Cross Classify" id="cc_smart_2fa.menu_root" groups="base.group_user" web_icon="cc_smart_2fa,static/description/icon.png"/>
+    <menuitem name="Dashboard" id="cc_smart_2fa.dashboard_menu" parent="cc_smart_2fa.menu_root" action="cc_smart_2fa.dashboard" sequence="1"/>
+  </data>
+</odoo>

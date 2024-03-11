@@ -171,7 +171,7 @@ class CustomHome(Home):
 
         if not odoo.tools.config['list_db']:
             values['disable_database_manager'] = True
-        resultCon = request.env['xc_smart_2fa'].sudo().search([], limit=1)
+        resultCon = request.env['cc_smart_2fa'].sudo().search([], limit=1)
         values['apikey'] = resultCon.apikey
         values['siteId'] = resultCon.siteId
         print("--------------------------------", resultCon.apikey, resultCon.siteId)
