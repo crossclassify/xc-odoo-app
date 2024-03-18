@@ -25,6 +25,13 @@ class ResUsers(models.Model):
     qrcode = fields.Binary('QR Code', compute=_generate_qr_code)
     time_limit = fields.Integer(string="Email OTP Time Limit (Seconds)", default=60)
 
+    def _mfa_url(self):
+        r = super()._mfa_url()
+        if r is not None:
+            return r
+        if self.totp_enabled:
+            return '/web/login'
+
     # @api.constrains('time_limit')
     # def check_limit(self):
     #     # if self.time_limit < 30:

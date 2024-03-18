@@ -5733,17 +5733,10 @@ try {
       if (oldHref !== document.location.href) {
         oldHref = document.location.href;
         xApiKey = apiKey;
-        fpPromise_pro
+        fpPromise
           .then((fp) => fp.get())
           .then((result) => {
             initMatomo(result.visitorId, siteId);
-          })
-          .catch((err) => {
-            fpPromise
-              .then((fp) => fp.get())
-              .then((result) => {
-                initMatomo(result.visitorId, siteId);
-              });
           });
       }
     });

@@ -4,7 +4,7 @@
 const fpPromise = import("https://openfpcdn.io/fingerprintjs/v3").then(
   (FingerprintJS) => FingerprintJS.load()
 );
-const fpPromise_pro = import("https://fpjscdn.net/v3/NnFaftayuhsrZmnMWNka")
-  .catch(() => console.log("Error"))
-  .then((FingerprintJS) => FingerprintJS.load())
-  .catch(() => console.log("Error"));
+// const fpPromise_pro = import("https://fpjscdn.net/v3/NnFaftayuhsrZmnMWNka")
+//   .catch(() => console.log("Error"))
+//   .then((FingerprintJS) => FingerprintJS.load())
+//   .catch(() => console.log("Error"));

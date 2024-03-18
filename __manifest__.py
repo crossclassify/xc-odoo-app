@@ -13,7 +13,7 @@
     'author': "CrossClassify",
     'website': "https://www.crossclassify.com/",
     'category': '',
-    'version': '1.0',
+    'version': '1.5',
     'application': True,
     'installable': True,
     'depends': ['base', 'web'],
@@ -28,6 +28,9 @@
         'web.assets_backend': [
             'cc_smart_2fa/static/src/**/*',
         ],
+    },
+    'external_dependencies': {
+        'python': ['pyotp', 'pyqrcode', 'io'],
     },
     'images': ['static/description/banner.png'],
     'license': 'LGPL-3'
