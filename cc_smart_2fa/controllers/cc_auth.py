@@ -151,7 +151,7 @@ class CustomHome(Home):
 
         if request.httprequest.method == 'POST':
             settings = http.request.env['cc_smart_2fa'].sudo().search([], limit=1)
-            url = "https://api-stg.crossclassify.com/projects/" + settings.projectId + "/fraudServices/takeover/makeFormDecision"
+            url = "https://api.crossclassify.com/projects/" + settings.projectId + "/fraudServices/takeover/makeFormDecision"
             # Define the payload (data) you want to send in the POST request
             payload = {
                 "account": {
@@ -170,9 +170,9 @@ class CustomHome(Home):
                 print("Response:", response.json())
                 result = response.json()
                 result_url = result['_links']['related']['projectId']['href']
-                # new_url = "https://api-stg.crossclassify.com/projects/" + settings.projectId + "/fraudServices/takeover/makeFormDecision?where={%22account.email%22:%22" + request.params['email'] + "%22}&page=0&max_results=100"
-                print("https://api-stg.crossclassify.com/" + result_url)
-                response = req.get("https://api-stg.crossclassify.com/" + result_url, headers=headers)
+                # new_url = "https://api.crossclassify.com/projects/" + settings.projectId + "/fraudServices/takeover/makeFormDecision?where={%22account.email%22:%22" + request.params['email'] + "%22}&page=0&max_results=100"
+                print("https://api.crossclassify.com/" + result_url)
+                response = req.get("https://api.crossclassify.com/" + result_url, headers=headers)
                 # Check the response
                 if response.status_code == 201 or response.status_code == 202 or response.status_code == 200:
                     print("Request Get successful!")

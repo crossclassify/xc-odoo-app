@@ -5661,7 +5661,7 @@ try {
     _paq.push(["setPageViewId", pageviewid]);
     window._paq = _paq;
     (function () {
-      var u = "https://i1uaiuond3.execute-api.ap-southeast-2.amazonaws.com/";
+      var u = "https://api.crossclassify.com/matomo/";
       _paq.push(["setTrackerUrl", u + "matomo.php"]);
       _paq.push(["setSiteId", siteId]);
       piwikJs();
