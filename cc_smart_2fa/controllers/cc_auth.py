@@ -151,48 +151,63 @@ class CustomHome(Home):
 
         if request.httprequest.method == 'POST':
             settings = http.request.env['cc_smart_2fa'].sudo().search([], limit=1)
-            # url = "https://api-stg.crossclassify.com/projects/" + settings.projectId + "/fraudServices/takeover/makeFormDecision"
+            url = "https://api-stg.crossclassify.com/projects/" + settings.projectId + "/fraudServices/takeover/makeFormDecision"
             # Define the payload (data) you want to send in the POST request
-            # payload = {
-            #     "account": {
-            #         "email": request.params['email']
-            #     }
-            # }
+            payload = {
+                "account": {
+                    "email": request.params['email']
+                }
+            }
             headers = {
                 'Authorization': 'Bearer ' + settings.authToken,
                 'Content-Type': 'application/json'  # Assuming the content type is JSON
             }
             # Make the POST request
-            # response = req.post(url, json=payload, headers=headers)
+            response = req.post(url, json=payload, headers=headers)
             # Check the response
-            # if response.status_code == 201 or response.status_code == 202:
-                # print("Request successful!")
-                # print("Response:", response.json())
-                # result = response.json()
-            new_url = "https://api-stg.crossclassify.com/projects/" + settings.projectId + "/fraudServices/takeover/makeFormDecision?where={%22account.email%22:%22" + request.params['email'] + "%22}&page=0&max_results=100"
-            print(new_url)
-            response = req.get(new_url, headers=headers)
-            # Check the response
-            if response.status_code == 201 or response.status_code == 202 or response.status_code == 200:
-                print("Request Get successful!")
-                print("Response Get:", response.json())
+            if response.status_code == 201 or response.status_code == 202:
+                print("Request successful!")
+                print("Response:", response.json())
                 result = response.json()
-                # if (result['_items'] and result['_items'][0]):
-                #     is_Blocked = result['_items'][0]['isBlocked']
-                #     if (is_Blocked or not is_Blocked):
-                secret_key = "CYKTXFE3ARFDJDIPOBNR6SVIJ7IZIIRW"
-                totp = pyotp.totp.TOTP(secret_key)
-                verification_code = totp.now()
-                uri = totp.provisioning_uri(name=request.params['email'], issuer_name="Smart 2FA")
-                qr_img = qrcode.make(uri)
-                buffer = BytesIO()
-                qr_img.save(buffer, format="PNG")
-                image_base64 = base64.b64encode(buffer.getvalue()).decode()
-                time.sleep(5)
-                return request.render('cc_smart_2fa.notify_error_login', {"image_base64":image_base64, 'email': request.params['email'], 'password': request.params['password']})
-            else: 
-                print("Requestv Get failed with status code:", response.status_code)
-                print("Response Get:", response.text)
+                result_url = result['_links']['related']['projectId']['href']
+                # new_url = "https://api-stg.crossclassify.com/projects/" + settings.projectId + "/fraudServices/takeover/makeFormDecision?where={%22account.email%22:%22" + request.params['email'] + "%22}&page=0&max_results=100"
+                print("https://api-stg.crossclassify.com/" + result_url)
+                response = req.get("https://api-stg.crossclassify.com/" + result_url, headers=headers)
+                # Check the response
+                if response.status_code == 201 or response.status_code == 202 or response.status_code == 200:
+                    print("Request Get successful!")
+                    print("Response Get:", response.json())
+                    result = response.json()
+                    if (result['_items'] and result['_items'][0]):
+                        is_Blocked = result['_items'][0]['isBlocked']
+                        if (is_Blocked or not is_Blocked):
+                            secret_key = "CYKTXFE3ARFDJDIPOBNR6SVIJ7IZIIRW"
+                            totp = pyotp.totp.TOTP(secret_key)
+                            verification_code = totp.now()
+                            uri = totp.provisioning_uri(name=request.params['email'], issuer_name="Smart 2FA")
+                            qr_img = qrcode.make(uri)
+                            buffer = BytesIO()
+                            qr_img.save(buffer, format="PNG")
+                            image_base64 = base64.b64encode(buffer.getvalue()).decode()
+                            time.sleep(5)
+                            return request.render('cc_smart_2fa.notify_error_login', {"image_base64":image_base64, 'email': request.params['email'], 'password': request.params['password']})
+                else: 
+                    print("Requestv Get failed with status code:", response.status_code)
+                    print("Response Get:", response.text)
+                    request.params['login_success'] = False
+                    secret_key = "CYKTXFE3ARFDJDIPOBNR6SVIJ7IZIIRW"
+                    totp = pyotp.totp.TOTP(secret_key)
+                    verification_code = totp.now()
+                    uri = totp.provisioning_uri(name=request.params['email'], issuer_name="Smart 2FA")
+                    qr_img = qrcode.make(uri)
+                    buffer = BytesIO()
+                    qr_img.save(buffer, format="PNG")
+                    image_base64 = base64.b64encode(buffer.getvalue()).decode()
+                    time.sleep(5)
+                    return request.render('cc_smart_2fa.notify_error_login', {"image_base64":image_base64, 'email': request.params['email'], 'password': request.params['password']})
+            else:
+                print("Request failed with status code:", response.status_code)
+                print("Response:", response.text)
                 request.params['login_success'] = False
                 secret_key = "CYKTXFE3ARFDJDIPOBNR6SVIJ7IZIIRW"
                 totp = pyotp.totp.TOTP(secret_key)
@@ -204,20 +219,6 @@ class CustomHome(Home):
                 image_base64 = base64.b64encode(buffer.getvalue()).decode()
                 time.sleep(5)
                 return request.render('cc_smart_2fa.notify_error_login', {"image_base64":image_base64, 'email': request.params['email'], 'password': request.params['password']})
-            # else:
-            #     print("Request failed with status code:", response.status_code)
-            #     print("Response:", response.text)
-            #     request.params['login_success'] = False
-            #     secret_key = "CYKTXFE3ARFDJDIPOBNR6SVIJ7IZIIRW"
-            #     totp = pyotp.totp.TOTP(secret_key)
-            #     verification_code = totp.now()
-            #     uri = totp.provisioning_uri(name=request.params['email'], issuer_name="Smart 2FA")
-            #     qr_img = qrcode.make(uri)
-            #     buffer = BytesIO()
-            #     qr_img.save(buffer, format="PNG")
-            #     image_base64 = base64.b64encode(buffer.getvalue()).decode()
-            #     time.sleep(5)
-            #     return request.render('cc_smart_2fa.notify_error_login', {"image_base64":image_base64, 'email': request.params['email'], 'password': request.params['password']})
 
                 
             try:
