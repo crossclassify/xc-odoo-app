@@ -3,11 +3,11 @@
     'name': "Smart 2FA",
 
     'summary': """
-        Secure your Odoo platform by using Smart 2FA.
+        Smarter two factor authentication (2FA) using AI without any SMS, email or third party app!
     """,
 
     'description': """
-        Secure your Odoo platform by using Smart 2FA.
+        Smarter two factor authentication (2FA) using AI without any SMS, email or third party app!
     """,
 
     'author': "CrossClassify",
